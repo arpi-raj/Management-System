@@ -39,6 +39,7 @@ public:
   }
 
   friend void del(int _count, teacher t[]);
+  friend void ser(int _count, teacher t[]);
 };
 
 void del(int _count, teacher t[])
@@ -72,6 +73,26 @@ void del(int _count, teacher t[])
     t[i].name = t[i + 1].name;
     t[i].sub = t[i + 1].sub;
     t[i].subcode = t[i + 1].subcode;
+  }
+}
+
+void ser(int _count, teacher t[])
+{
+
+  string name;
+  cout << "Enter Name: ";
+  cin >> name;
+
+  cout << endl
+       << "Search Results: " << endl;
+
+  for (int i = 0; i < _count; i++)
+  {
+    if (name == t[i].name)
+    {
+      t[i].display();
+      cout << endl;
+    }
   }
 }
 
@@ -168,7 +189,8 @@ start:
       cout << "1) Create\n";
       cout << "2) Display\n";
       cout << "3) Delete\n";
-      cout << "4) Jump to Main Menu\n";
+      cout << "4) Search\n";
+      cout << "5) Jump to Main Menu\n";
       cout << "Enter your choice: ";
       cin >> choice;
       switch (choice)
@@ -188,8 +210,6 @@ start:
           else
             goto teachers;
         }
-      out1:
-        break;
 
       case 2:
         for (int i = 0; i < count; i++)
@@ -208,12 +228,18 @@ start:
         count--;
         getch();
         goto teachers;
-      }
+        break;
 
-    case 4:
-      goto start;
-    default:
-      cout << "\nEnter choice is invalid\ntry again\n\n";
+      case 4:
+        ser(count, t);
+        getch();
+        goto teachers;
+
+      case 5:
+        goto start;
+      default:
+        cout << "\nEnter choice is invalid\ntry again\n\n";
+      }
     }
 
   case 2:
@@ -245,8 +271,7 @@ start:
           else
             goto LA;
         }
-      out2:
-        break;
+
       case 2:
         for (int i = 0; i < cont; i++)
         {
