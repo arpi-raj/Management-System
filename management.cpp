@@ -80,7 +80,7 @@ void ser(int _count, teacher t[])
 {
 
   string name;
-  cout << "Enter Name: ";
+  cout << "Enter Teacher's Name: ";
   cin >> name;
 
   cout << endl
@@ -118,13 +118,14 @@ public:
   void disp()
   {
     cout << "Name is \t" << name << endl;
-    cout << "Id is  \t" << id << endl;
+    cout << "Id is \t\t" << id << endl;
     cout << "Salary is \t" << sal << endl;
     cout << "Floor is \t" << floor << endl;
     cout << "Lab No is  \t" << lbno << endl;
   }
 
   friend void delL(int _count, lbass t[]);
+  friend void ser(int _count, lbass t[]);
 };
 
 void delL(int _count, lbass t[])
@@ -161,6 +162,26 @@ void delL(int _count, lbass t[])
   }
 }
 
+void ser(int _count, lbass t[])
+{
+
+  string name;
+  cout << "Enter Lab Assistant's Name: ";
+  cin >> name;
+
+  cout << endl
+       << "Search Results: " << endl;
+
+  for (int i = 0; i < _count; i++)
+  {
+    if (name == t[i].name)
+    {
+      t[i].disp();
+      cout << endl;
+    }
+  }
+}
+
 int main()
 {
   teacher t[100];
@@ -169,7 +190,7 @@ int main()
   char test;
 
 start:
-  cout << "\n\n===== CU MANAGEMENT SYSTEM =====\n"
+  cout << "\n\n===== MANAGEMENT SYSTEM =====\n"
        << endl;
   cout << "1)  Teachers\n";
   cout << "2)  Lab Assistant\n";
@@ -251,7 +272,8 @@ start:
       cout << "1) Create\n";
       cout << "2) Display\n";
       cout << "3) Delete\n";
-      cout << "4) Jump to Main Menu\n";
+      cout << "4) Search\n";
+      cout << "5) Jump to Main Menu\n";
       cout << "Enter your choice: ";
       cin >> choice;
       switch (choice)
@@ -289,6 +311,11 @@ start:
         goto LA;
 
       case 4:
+        ser(cont, l);
+        getch();
+        goto LA;
+
+      case 5:
         goto start;
       default:
         cout << "\nEnter choice is invalid\ntry again\n\n";
